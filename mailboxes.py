@@ -1,17 +1,23 @@
 #! /usr/bin/env python
 
 import os
+import sys
 
 
 mail_location = os.path.expanduser("~/Mail/")
+types = {
+    # dictionary: "mail -> list of directories"
+    # relative paths from mail_location
+}
 filters = [
-    # Directory not list in mutt
-    # relative paths from 'mail_location'
-    ]
+    # mailboxes to hide, relative paths from mail_location
+]
 
 
-def get_addresses():
-    return sorted(os.listdir(mail_location))
+def get_addresses(instance):
+    if not instance:
+        return sorted(os.listdir(mail_location))
+    return sorted(list(set(os.listdir(mail_location)) & set(types[instance])))
 
 
 def get_maildirs(addresses):
@@ -31,4 +37,7 @@ def format(maildirs):
 
 
 if __name__ == "__main__":
-    print format(get_maildirs(get_addresses()))
+    inst = None
+    if len(sys.argv) > 1:
+        inst = sys.argv[1]
+    print format(get_maildirs(get_addresses(inst)))
