@@ -1,0 +1,25 @@
+startup_message off
+vbell off
+bell_msg "^G"
+
+attrcolor b ".I"
+attrcolor i "+b"
+
+nonblock on
+
+escape ^||
+bindkey "^[x" command
+
+
+bindkey "^[Od" prev    # change window with ctrl-left
+bindkey "^[Oc" next    # change window with ctrl-right
+
+hardstatus on
+hardstatus alwayslastline
+#hardstatus string "%{.kW}%-w%{.W}%n %t%{-}%{=b kw}%?%+w%? %=%c %d/%m/%Y" #B&W & date&time
+hardstatus string "%{.kW}%-w%{.W}%n %t%{-}%{=b kw}%?%+w%? %=%c %d/%m/%Y" #B&W & date&time
+sorendition kw
+
+screen -t offlineimap 0 offlineimap
+screen -t ACCOUNT1 1 mutt -F ~/config/muttrc_ACCOUNT1
+screen -t ACCOUNT2 2 mutt -F ~/config/muttrc_ACCOUNT2

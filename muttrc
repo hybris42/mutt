@@ -1,0 +1,11 @@
+## Main mutt configuration file.
+
+source accounts.conf		# account informations
+mailboxes `mailboxes.py`	# mailboxes list
+source colors.conf
+source default.conf
+source formats.conf		# mail format
+source gpg.conf			# GPG configuration
+source keys.conf
+source sidebar.conf
+source aliases			# mail aliases
